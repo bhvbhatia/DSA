@@ -3,49 +3,54 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 1e6 + 10;
-int n;
-long long m;
-long long trees[N];
+typedef long long int lli;
+lli a[10000001];
 
-bool iswood(int h)
+bool solve(lli mid, lli n, lli m)
 {
-    long long wood = 0;
-    for (int i = 0; i < n; i++)
+    lli i, collected = 0;
+    for (i = 0; i < n; i++)
     {
-        if (trees[i] >= h)
+
+        if (a[i] > mid)
         {
-            wood += (trees[i] - h);
+            collected += (a[i] - mid);
         }
     }
-    return wood >= m;
-}
-int main()
-{
-    cin >> n >> m;
-    for (int i = 0; i < n; i++)
+    if (collected >= m)
     {
-        cin >> trees[i];
-    }
-    long long lo = 0, hi = 1e9, mid;
-    while (hi - lo > 1)
-    {
-        mid = (hi + lo) / 2;
-        if (iswood(mid))
-        {
-            lo = mid;
-        }
-        else
-        {
-            hi = mid - 1;
-        }
-    }
-    if (iswood(hi))
-    {
-        cout << hi << endl;
+        return true;
     }
     else
     {
-        cout << lo << endl;
+        return false;
     }
+}
+int main()
+{
+    lli n, i, j, m, ans = 0, l = 0, h = -1, mid;
+
+    cin >> n >> m;
+    for (i = 0; i < n; i++)
+    {
+        cin >> a[i];
+
+        h = max(h, a[i]);
+    }
+    while (l <= h)
+    {
+        mid = (l + h) / 2;
+
+        if (solve(mid, n, m))
+        {
+            ans = mid;
+            l = mid + 1;
+        }
+        else
+        {
+            h = mid - 1;
+        }
+    }
+    cout << ans;
+    return 0;
 }
