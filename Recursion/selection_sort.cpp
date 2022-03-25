@@ -16,12 +16,7 @@ void sortArray(int *arr, int beginIndex, int n)
         }
     }
     swap(arr[minIndex], arr[beginIndex]);
-    for (int i = 0; i < 6; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl
-         << endl;
+
     sortArray(arr, beginIndex + 1, n);
 }
 
