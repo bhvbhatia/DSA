@@ -2,7 +2,7 @@
 using namespace std;
 
 // Leetcode 186
-void reverse(string str, int i, int j)
+void reverse(string &str, int i, int j)
 {
     while (i < j)
     {
@@ -11,15 +11,16 @@ void reverse(string str, int i, int j)
         str[i] = str[j];
         str[j] = temp;
         i++;
-        j++;
+        j--;
     }
 }
-string reverseWords(string arr)
+string reverseWords(string &arr)
 {
     if (arr.empty())
     {
         return arr;
     }
+    reverse(arr, 0, arr.length() - 1);
     int i = 0;
     int j = 0;
     while (j <= arr.length())
@@ -36,6 +37,7 @@ string reverseWords(string arr)
 
 int main()
 {
-    string name = "my name is";
-    cout << reverseWords(name);
+    string name = "The Sky is blue";
+    string str = reverseWords(name);
+    cout << str;
 }
