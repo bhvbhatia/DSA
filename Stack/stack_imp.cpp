@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// stack using arrays
 class Stack
 {
 public:
